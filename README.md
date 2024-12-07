@@ -80,7 +80,7 @@ tar -xvf emg2pose_dataset_mini.tar
 
 ### Sanity Check Train / Eval
 
-To run a sanity-check training workflow over the the small, sanity-check version of the
+To run a sanity-check training workflow over the small, sanity-check version of the
 dataset, please use the following command.
 
 This runs training for the `tracking_vemg2pose` experiment for $5$ epochs as a sanity check.
