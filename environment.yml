@@ -36,3 +36,5 @@ dependencies:
     - mediapy==1.2.2
     - joblib==1.4.2
     - nbformat==5.10.4
+    - mne==1.11
+    - mne-bids==0.18
