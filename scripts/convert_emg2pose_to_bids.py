@@ -91,11 +91,11 @@ def get_mne_raw(
     # Combine data: EMG then joint angles
     # Shape: (n_channels, n_samples)
     # EMG data appears to be in microvolts, convert to Volts for MNE
-    # Joint angles are in radians - scale by 1e6 to compensate for EDF's
+    # Joint angles are in radians - scale by 1e6 to compensate for BDF's
     # assumption that MISC channels are in Volts (written as µV, read back as V)
     data = np.concatenate([
         data_dict["emg"].T * 1e-6,         # (16, n_samples) - µV to V
-        data_dict["joint_angles"].T * 1e6,  # (20, n_samples) - radians, scaled for EDF
+        data_dict["joint_angles"].T * 1e6,  # (20, n_samples) - radians, scaled for BDF
     ], axis=0)
 
     # Create MNE info and Raw object
@@ -139,7 +139,7 @@ def convert_to_bids(
         subject=f"{subject_idx + 1:02d}",
         session=f"{session_idx + 1:02d}",
         task="emg2pose",
-        acquisition=side,  # left or right hand
+        recording=side,  # left or right hand
         run=f"{recording_idx + 1:02d}",
         datatype="emg",
         root=bids_root,
@@ -148,7 +148,7 @@ def convert_to_bids(
         raw=raw,
         bids_path=bids_path,
         overwrite=True,
-        format="EDF",
+        format="BDF",
         allow_preload=True,
         emg_placement="Other",
     )
